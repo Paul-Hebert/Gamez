@@ -10,7 +10,7 @@ function gravity(){
 	if (playerPositionY <= horizon && jump == 0){
 		playerPositionY += gravitySpeed * fallLength;
 		fallLength++;
-		if (playerPositionY >= horizon){
+		if (playerPositionY >= horizon && jump == 0){
 			playerPositionY == horizon;
 			fallLength = 1;
 			jump = 0;
@@ -62,7 +62,7 @@ function horizontal(direction){
 
 function collisionTest(){
 	// Check goal
-		if (overallX > goalX && overallX < goalX +40 && playerPositionY < goalY && playerPositionY > goalY -40){
+		if (overallX + 20 > goalX && overallX < goalX +60 && playerPositionY < goalY && playerPositionY > goalY -60){
 			clearInterval(intervalId);
 			alert('Congratulations!');
 			window.location="index.html";
@@ -82,22 +82,23 @@ function jwertyTest(){
 }
 
 function runSprites(){
-	spriteLoop = 1;
 	if (jump != 0){
-		spriteLoop = 5;
+		spriteLoop = 20;
+	} else{
+	spriteLoop = 1;
 	}
 	if (direction2 < 0){
 		spriteNum = 1;
 	} else {
 		spriteNum = 2;
 	}
-	if (spriteCount == spriteLoop){
+	if (spriteLoop <= spriteCount){
 		spriteCount = 0;
 		sprites -= 63;
 		if (sprites < -1000){
 			sprites = 0;
 		}
-		$('#player').css("background","url('imgs/sprites" + spriteNum+ ".png') " + sprites + "px 0px");
+		$('#player').css("background","url('imgs/sprites" + spriteNum + ".png') " + sprites + "px 0px");
 	}
 
 	spriteCount++;

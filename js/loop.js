@@ -5,13 +5,13 @@ function updateGame(){
 }
 
 function drawGame(){
+	$('.bg').css('left',mapPositionX + 'px');
+	$('.bg').css('top',mapPositionY + 'px');
+    $('.background').css('left',backPositionX + 'px');
+    $('.background').css('top',backPositionY + 'px');
+	$('#player').css('left',playerPositionX + 'px');
+	$('#player').css('top',playerPositionY + 'px');
     runSprites();
-	$('.bg').css('left',mapPositionX + 'px')
-	$('.bg').css('top',mapPositionY + 'px')
-    $('.background').css('left',backPositionX + 'px')
-    $('.background').css('top',backPositionY + 'px')
-	$('#player').css('left',playerPositionX + 'px')
-	$('#player').css('top',playerPositionY + 'px')
 }
 
 <!-- Game Loop -->
