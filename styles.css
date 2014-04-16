@@ -13,15 +13,16 @@ body{
 	height:600px;
 	overflow:hidden;
 	position:relative;
+	border: 4px #000 solid;
 }
 
 #player{
 	position:fixed;
 	left:270px;
 	top:500px;
-	width:30px;
+	width:50px;
 	height:60px;
-	background:red;
+	background:url('imgs/sprites.png') 0px 0px;
 }
 
 .bg{
@@ -73,4 +74,13 @@ body{
 	top:310px;
 	height:40px;
 	background: #000;
+}
+
+#goal{
+	position: absolute;
+	left:900px;
+	top:270px;
+	width:30px;
+	height:30px;
+	background: gold;
 }

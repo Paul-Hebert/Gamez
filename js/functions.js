@@ -33,12 +33,13 @@ function startJump(){
 }
 
 function horizontal(direction){
+	direction2 = direction;
 	if (((-mapPositionX < mapWidth - 600 && direction < 0) || (-mapPositionX > 0 && direction > 0)) && playerPositionX == 270){
 		mapPositionX += direction;
-		backPositionX-= direction/2;
+		backPositionX-= direction*7/8;
 		updated = true;
 	} else if ((-mapPositionX < 10 && direction > 0) || (-mapPositionX > mapWidth-610 && direction < 0)){
-		if (playerPositionX > 20 && playerPositionX < 560){
+		if (playerPositionX > 4 && playerPositionX < 548){
 			playerPositionX -= direction;
 			updated = true;
 		}
@@ -50,13 +51,22 @@ function horizontal(direction){
 	overallX = playerPositionX - mapPositionX;
 
 	if (overallX <= 40){
-		horizon = 500;
+		horizon = 537;
 	} else if (overallX >= 520){
-		horizon = 250
+		horizon = 260;
 	} 
 	else {
-		horizon = 400
+		horizon = 410;
 	}
+}
+
+function collisionTest(){
+	// Check goal
+		if (overallX > goalX && overallX < goalX +40 && playerPositionY < goalY && playerPositionY > goalY -40){
+			clearInterval(intervalId);
+			alert('Congratulations!');
+			window.location="index.html";
+		}
 }
 
 function jwertyTest(){
@@ -69,4 +79,26 @@ function jwertyTest(){
 		jwerty.key('d', function () { horizontal(-speed); });
 		jwerty.key('a', function () { horizontal(speed); });
 	}
+}
+
+function runSprites(){
+	spriteLoop = 1;
+	if (jump != 0){
+		spriteLoop = 5;
+	}
+	if (direction2 < 0){
+		spriteNum = 1;
+	} else {
+		spriteNum = 2;
+	}
+	if (spriteCount == spriteLoop){
+		spriteCount = 0;
+		sprites -= 63;
+		if (sprites < -1000){
+			sprites = 0;
+		}
+		$('#player').css("background","url('imgs/sprites" + spriteNum+ ".png') " + sprites + "px 0px");
+	}
+
+	spriteCount++;
 }
