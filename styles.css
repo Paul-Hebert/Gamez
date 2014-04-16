@@ -1,0 +1,76 @@
+*{
+	padding:0px;
+	margin:0px;
+	box-sizing:border-box;
+}
+
+body{
+	background: #ccc;
+}
+#map{
+	background:#000;
+	width:600px;
+	height:600px;
+	overflow:hidden;
+	position:relative;
+}
+
+#player{
+	position:fixed;
+	left:270px;
+	top:500px;
+	width:30px;
+	height:60px;
+	background:red;
+}
+
+.bg{
+	height:100%;
+	width:963px;
+	position:absolute;
+	top:0;
+	left:0;
+    -webkit-transition: left 50ms ease;
+    -moz-transition: left 50ms ease;
+    -o-transition: left 50ms ease;
+    transition: left 50ms ease;
+    -webkit-transition: top 50ms ease;
+    -moz-transition: top 50ms ease;
+    -o-transition: top 50ms ease;
+    transition: top 50ms ease;
+    background:#fff;
+}
+
+.foreground{
+	height:100%;
+	width:963px;
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+
+.background{
+	height:100%;
+	width:1100px;
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+
+#platform1{
+	position:absolute;
+	left:60px;
+	right:0px;
+	top:460px;
+	height:40px;
+	background: #000;
+}
+
+#platform2{
+	position:absolute;
+	left:540px;
+	right:0px;
+	top:310px;
+	height:40px;
+	background: #000;
+}
