@@ -40,8 +40,8 @@
 		}
 		updated = true;
 	}
+
 // Horizontal movement
-horizonCheck=0
 	function horizontal(direction2){
 		direction = direction2; //Sets direction globally to be used for sprites
 		if (((-mapPositionX < mapWidth - 600 && direction < 0) || (-mapPositionX > 0 && direction > 0)) && playerPositionX == 270){ // Move map if there's space.
@@ -58,33 +58,20 @@ horizonCheck=0
 			updated = true;	
 		}
 		overallX = playerPositionX - mapPositionX; //Sets overall position that map elements are based upon.
-		horizonCheck ++;
-		if ( collision == false){
-			horizonCheck = 1;
-			playerPositionY += 50;
-			horizon -= 50;
 
-			fallLength = 1;
-			updated = true;
-		}
 	}
 
-//Collision testing
+//Collision testing (Send objects to checkCollision)
 	function collisionTest(){
-		i = 0;
-		collisionNum++;
+		// Reset Vars
+			i = 0;
+			collisionNum++;
+		// Loop through obstacles
+			while (i != 2){
+			i++;
+			checkCollision('platform' + i);
 
-		while (i != 2){
-		i++;
-		checkCollision('platform' + i);
-
-		}
-
-		if (collision == false && collisionNum == 50){
-			jump = jumpLength;
-			startJump();
-			collisionNum = 0;
-		}
+			}
 		// Check goal
 			if (overallX + 20 > goalX && overallX < goalX +60 && playerPositionY < goalY && playerPositionY > goalY -60){
 				clearInterval(intervalId);
@@ -92,30 +79,32 @@ horizonCheck=0
 			}
 	}
 
-function checkCollision(object){
+// Actual Test function
+	function checkCollision(object){
+	//Set left to number
 		platformLeft = $("#" + object +"").css('left');
 		platformLeft = parseFloat(platformLeft.substr(0, (platformLeft.length - 2)));
-
+	// Set right based off left + width
 		platformRight = $("#" + object +"").css('width');
 		platformRight = parseFloat(platformRight.substr(0, (platformRight.length - 2)));
 		platformRight += platformLeft;
 
-
+	//Set top to number
 		platformTop = $("#" + object +"").css('top');
 		platformTop = parseFloat(platformTop.substr(0, (platformTop.length - 2)));
-
+	//Set bottom based off top+height
 		platformBottom = $("#" + object +"").css('height');
 		platformBottom = parseFloat(platformBottom.substr(0, (platformBottom.length - 2)));
 		platformBottom += platformTop;
-
-			if (overallX > platformLeft && overallX < platformRight && playerPositionY < platformBottom && playerPositionY > platformTop){
-				if (originalPlayerY < platformTop){
-					horizon = platformTop;
-					jump = 0;
-
-				}
-					collision = true;
+	//Test collision with newly set vars
+		if (overallX > platformLeft && overallX < platformRight && playerPositionY < platformBottom && playerPositionY > platformTop){
+			//If falling onto platform, set platform as horizon.
+			if (originalPlayerY < platformTop){
+				horizon = platformTop;
+				jump = 0;
 			}
+				collision = true;
+		}
 }
 
 function jwertyTest(){

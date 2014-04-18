@@ -17,7 +17,7 @@ goalY = 270;
 
 overallX = playerPositionX - mapPositionX;
 
-speed=1/10;
+speed=1/20;
 
 jump=0;
 jumpHeight = 10;
