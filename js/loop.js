@@ -1,20 +1,23 @@
-function updateGame(){
-	gravity();
-	jwertyTest();
-    collisionTest();
-}
+// Update 
+    function updateGame(){
+        collisionTest();
+      setValues();
+        jwertyTest();
+    	gravity();
 
-function drawGame(){
-	$('.bg').css('left',mapPositionX + 'px');
-	$('.bg').css('top',mapPositionY + 'px');
-    $('.background').css('left',backPositionX + 'px');
-    $('.background').css('top',backPositionY + 'px');
-	$('#player').css('left',playerPositionX + 'px');
-	$('#player').css('top',playerPositionY + 'px');
-    runSprites();
-}
+    }
+//draw
+    function drawGame(){
+    	$('.bg').css('left',mapPositionX + 'px');
+    	$('.bg').css('top',mapPositionY + 'px');
+        $('.background').css('left',backPositionX + 'px');
+        $('.background').css('top',backPositionY + 'px');
+    	$('#player').css('left',playerPositionX + 'px');
+    	$('#player').css('top',playerPositionY + 'px');
+        runSprites();
+    }
 
-<!-- Game Loop -->
+// Game Loop
     var mainloop = function() {
         updateGame();
         if (updated){
@@ -25,4 +28,4 @@ function drawGame(){
 
 
     var ONE_FRAME_TIME = 1000.0 / 120.0 ;
-intervalId = setInterval( mainloop, ONE_FRAME_TIME );
+    intervalId = setInterval( mainloop, ONE_FRAME_TIME );

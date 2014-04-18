@@ -1,6 +1,8 @@
 function updateGame(){
-	gravity();
-	jwertyTest();
+    setValues();
+    jwertyTest();
+    gravity();
+    collisionTest();
 }
 
 function drawGame(){

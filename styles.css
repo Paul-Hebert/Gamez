@@ -17,7 +17,7 @@ body{
 }
 
 #player{
-	position:fixed;
+	position:absolute;
 	left:270px;
 	top:500px;
 	width:50px;
@@ -84,4 +84,5 @@ body{
 	height:30px;
 	background: gold;
 	border:1px red dashed;
+	border-radius:50%;
 }

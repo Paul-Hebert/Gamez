@@ -13,11 +13,11 @@ function setValues(){
 }
 
 function gravity(){
-	if (playerPositionY <= horizon && jump == 0){
+	if (collisionTest() == true && jump == 0){
 		playerPositionY += gravitySpeed * fallLength;
 		fallLength++;
-		if (playerPositionY >= horizon - 100 && jump == 0){
-			playerPositionY == horizon - 100;
+		if (collisionTest() == false && jump == 0){
+			playerPositionY == horizon;
 			fallLength = 1;
 			jump = 0;
 		}
@@ -32,7 +32,6 @@ function gravity(){
 function startJump(){
 	if (jump == jumpLength){
 		jump = 0;
-		horizon = 600;
 	} else{
 		playerPositionY -= jumpHeight - (jumpHeight / jumpLength*jump);
 		jump++;
@@ -71,6 +70,40 @@ function horizontal(direction){
 }
 
 function collisionTest(){
+	i = 0;
+	collision = false;
+	while (i != 2){
+	i++;
+	platformLeft = $('#platform' + i).css('left');
+	platformLeft = parseFloat(platformLeft.substr(0, (platformLeft.length - 2)));
+
+	platformRight = $('#platform' + i).css('width');
+	platformRight = parseFloat(platformRight.substr(0, (platformRight.length - 2)));
+	platformRight += platformLeft;
+
+
+	platformTop = $('#platform' + i).css('top');
+	platformTop = parseFloat(platformTop.substr(0, (platformTop.length - 2)));
+
+	platformBottom = $('#platform' + i).css('height');
+	platformBottom = parseFloat(platformBottom.substr(0, (platformBottom.length - 2)));
+	platformBottom += platformTop +30;
+
+		if (overallX > platformLeft && overallX < platformRight && playerPositionY < platformBottom && playerPositionY > platformTop){
+			jump = 0;
+			if (originalPlayerY > platformBottom){
+				playerPositionY = platformBottom-20;
+				gravity();
+				collision = true;
+			} else{
+				playerPositionY = originalPlayerY;
+				mapPositionX = originalMapX;
+				playerPositionX = originalPlayerX;
+			}
+		} else {
+			return collision;
+		}
+	}
 	// Check goal
 		if (overallX + 20 > goalX && overallX < goalX +60 && playerPositionY < goalY && playerPositionY > goalY -60){
 			clearInterval(intervalId);

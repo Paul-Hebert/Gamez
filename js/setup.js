@@ -4,7 +4,9 @@ playerPositionX=270;
 playerPositionY=400;
 backPositionX=0;
 backPositionY=0;
-horizon=410;
+horizon=450;
+direction = 1;
+spriteWidth = 1000;
 
 sprites = 0;
 spriteCount = 0;
@@ -23,6 +25,7 @@ jumpLength = 50;
 fallLength = 0;
 gravitySpeed = 1/2;
 
-pressing = false;
-
 mapWidth = document.getElementById('currentBG').clientWidth;
+
+collision = false;
+collisionNum= 0;
